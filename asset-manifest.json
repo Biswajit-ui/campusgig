@@ -1,15 +1,16 @@
 {
   "files": {
     "main.css": "/campusgig/static/css/main.e6c13ad2.css",
-    "main.js": "/campusgig/static/js/main.b3cd643c.js",
+    "main.js": "/campusgig/static/js/main.c9f773c7.js",
     "static/js/453.cee7b081.chunk.js": "/campusgig/static/js/453.cee7b081.chunk.js",
+    "static/media/Campusgig_prototype.png": "/campusgig/static/media/Campusgig_prototype.1872bf8b264671f30cab.png",
     "index.html": "/campusgig/index.html",
     "main.e6c13ad2.css.map": "/campusgig/static/css/main.e6c13ad2.css.map",
-    "main.b3cd643c.js.map": "/campusgig/static/js/main.b3cd643c.js.map",
+    "main.c9f773c7.js.map": "/campusgig/static/js/main.c9f773c7.js.map",
     "453.cee7b081.chunk.js.map": "/campusgig/static/js/453.cee7b081.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.b3cd643c.js"
+    "static/js/main.c9f773c7.js"
   ]
 }
