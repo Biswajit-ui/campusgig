@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ProtoImg from "./assets/Campusgig_prototype.png";
 
 const slides = [
   { id: 1, type: "cover" },
@@ -11,13 +12,14 @@ const slides = [
   { id: 8, type: "goToMarket" },
   { id: 9, type: "financials" },
   { id: 10, type: "competition" },
-  { id: 11, type: "closing" },
+  { id: 11, type: "prototype" },
+  { id: 12, type: "closing" },
 ];
 
 const slideLabels = [
   "Cover", "Hook", "Problem", "Solution", "How It Works",
   "Business Model", "Market Size", "Go-To-Market",
-  "Financials", "Competition", "Vision"
+  "Financials", "Competition", "Prototype", "Vision"
 ];
 
 const accent = "#FACC15";
@@ -26,7 +28,7 @@ const navy = "#111827";
 const cardBg = "rgba(255,255,255,0.04)";
 const border = "rgba(255,255,255,0.08)";
 
-const Tag = ({ children, color = accent }) => (
+const Tag = ({ children, color = accent }: { children: React.ReactNode; color?: string }) => (
   <span style={{
     background: `${color}22`, border: `1px solid ${color}44`,
     color, borderRadius: 6, padding: "3px 10px", fontSize: 11,
@@ -34,27 +36,25 @@ const Tag = ({ children, color = accent }) => (
   }}>{children}</span>
 );
 
-const Card = ({ children, style = {} }) => (
+const Card = ({ children, style = {} }: { children: React.ReactNode; style?: React.CSSProperties }) => (
   <div style={{
     background: cardBg, border: `1px solid ${border}`,
     borderRadius: 16, padding: "20px 24px", ...style
   }}>{children}</div>
 );
 
-const Stat = ({ value, label, color = accent }) => (
+const Stat = ({ value, label, color = accent }: { value: string; label: string; color?: string }) => (
   <div style={{ textAlign: "center" }}>
     <div style={{ fontSize: 36, fontWeight: 800, color, fontFamily: "'Syne', sans-serif", lineHeight: 1 }}>{value}</div>
-    <div style={{ fontSize: 11, color: "#94a3b8", marginTop: 4, fontFamily: "'DM Mono', monospace", letterSpacing: 1 }}>{label}</div>
+    <div style={{ fontSize: 14, color: "#94a3b8", marginTop: 4, fontFamily: "'DM Mono', monospace", letterSpacing: 1 }}>{label}</div>
   </div>
 );
 
-function CoverSlide({ active }) {
+function CoverSlide() {
   return (
     <div style={{ height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", position: "relative", overflow: "hidden" }}>
-      {/* Background grid */}
       <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(250,204,21,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(250,204,21,0.04) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
       <div style={{ position: "absolute", top: "20%", left: "50%", transform: "translateX(-50%)", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(250,204,21,0.08) 0%, transparent 70%)" }} />
-
       <div style={{ position: "relative", textAlign: "center" }}>
         <div style={{ marginBottom: 16 }}>
           <Tag>BCA DEPARTMENT · INTER-COLLEGE COMPETITION 2026</Tag>
@@ -72,7 +72,6 @@ function CoverSlide({ active }) {
           {["Hyperlocal", "College-Verified", "Escrow-Safe"].map(t => <Tag key={t}>{t}</Tag>)}
         </div>
       </div>
-
       <div style={{ position: "absolute", bottom: 32, display: "flex", gap: 32 }}>
         {[["₹20K", "Startup Cost"], ["Month 4", "Break-even"], ["₹1.1Cr", "Year 3 Revenue"]].map(([v, l]) => (
           <div key={l} style={{ textAlign: "center" }}>
@@ -94,7 +93,7 @@ function HookSlide() {
         He knows Photoshop.<br />
         He earns <span style={{ color: "#ef4444" }}>₹0.</span>
       </div>
-      <div style={{ marginTop: 24, color: "#94a3b8", fontSize: 15, fontFamily: "'DM Sans', sans-serif", lineHeight: 1.7, maxWidth: 480 }}>
+      <div style={{ marginTop: 24, color: "#94a3b8", fontSize: 18, fontFamily: "'DM Sans', sans-serif", lineHeight: 1.7, maxWidth: 560 }}>
         Rahul is a 2nd year BCA student with real skills — but no platform that trusts him, no portfolio, and no way to find local clients who'll pay fairly.
       </div>
       <div style={{ marginTop: 32, display: "flex", gap: 16 }}>
@@ -105,7 +104,7 @@ function HookSlide() {
         ].map(({ icon, text }) => (
           <Card key={text} style={{ flex: 1 }}>
             <div style={{ fontSize: 24, marginBottom: 8 }}>{icon}</div>
-            <div style={{ fontSize: 12, color: "#cbd5e1", fontFamily: "'DM Sans', sans-serif", lineHeight: 1.6 }}>{text}</div>
+            <div style={{ fontSize: 15, color: "#cbd5e1", fontFamily: "'DM Sans', sans-serif", lineHeight: 1.6 }}>{text}</div>
           </Card>
         ))}
       </div>
@@ -130,8 +129,8 @@ function ProblemSlide() {
           <div key={who} style={{ display: "flex", alignItems: "center", gap: 16, background: "rgba(239,68,68,0.05)", border: "1px solid rgba(239,68,68,0.15)", borderRadius: 12, padding: "16px 20px" }}>
             <div style={{ fontSize: 28 }}>{icon}</div>
             <div>
-              <div style={{ fontSize: 11, fontFamily: "'DM Mono', monospace", color: "#ef4444", letterSpacing: 1, marginBottom: 4 }}>{who.toUpperCase()}</div>
-              <div style={{ fontSize: 14, color: "#e2e8f0", fontFamily: "'DM Sans', sans-serif" }}>{pain}</div>
+              <div style={{ fontSize: 13, fontFamily: "'DM Mono', monospace", color: "#ef4444", letterSpacing: 1, marginBottom: 4 }}>{who.toUpperCase()}</div>
+              <div style={{ fontSize: 17, color: "#e2e8f0", fontFamily: "'DM Sans', sans-serif" }}>{pain}</div>
             </div>
           </div>
         ))}
@@ -152,7 +151,7 @@ function SolutionSlide() {
       <div style={{ marginTop: 16, fontSize: 38, fontWeight: 800, fontFamily: "'Syne', sans-serif" }}>
         Introducing <span style={{ color: accent }}>CampusGig</span>
       </div>
-      <div style={{ marginTop: 8, color: "#94a3b8", fontFamily: "'DM Sans', sans-serif", fontSize: 15 }}>
+      <div style={{ marginTop: 8, color: "#94a3b8", fontFamily: "'DM Sans', sans-serif", fontSize: 18 }}>
         A hyperlocal, college-verified freelance marketplace
       </div>
       <div style={{ marginTop: 28, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
@@ -167,8 +166,8 @@ function SolutionSlide() {
           <Card key={title} style={{ display: "flex", gap: 12, alignItems: "flex-start", padding: "14px 16px" }}>
             <div style={{ fontSize: 20 }}>{icon}</div>
             <div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: "#f1f5f9", fontFamily: "'Syne', sans-serif" }}>{title}</div>
-              <div style={{ fontSize: 11, color: "#64748b", fontFamily: "'DM Sans', sans-serif", marginTop: 2 }}>{desc}</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#f1f5f9", fontFamily: "'Syne', sans-serif" }}>{title}</div>
+              <div style={{ fontSize: 13, color: "#64748b", fontFamily: "'DM Sans', sans-serif", marginTop: 2 }}>{desc}</div>
             </div>
           </Card>
         ))}
@@ -198,9 +197,9 @@ function HowItWorksSlide() {
               {i < steps.length - 1 && <div style={{ width: 2, flex: 1, background: `linear-gradient(${color}44, ${steps[i+1].color}44)`, margin: "4px 0" }} />}
             </div>
             <div style={{ paddingBottom: i < steps.length - 1 ? 20 : 0, paddingTop: 8 }}>
-              <div style={{ fontSize: 11, fontFamily: "'DM Mono', monospace", color, letterSpacing: 1 }}>{who.toUpperCase()}</div>
-              <div style={{ fontSize: 16, fontWeight: 700, color: "#f1f5f9", fontFamily: "'Syne', sans-serif" }}>{action}</div>
-              <div style={{ fontSize: 12, color: "#64748b", fontFamily: "'DM Sans', sans-serif" }}>{detail}</div>
+              <div style={{ fontSize: 13, fontFamily: "'DM Mono', monospace", color, letterSpacing: 1 }}>{who.toUpperCase()}</div>
+              <div style={{ fontSize: 18, fontWeight: 700, color: "#f1f5f9", fontFamily: "'Syne', sans-serif" }}>{action}</div>
+              <div style={{ fontSize: 15, color: "#64748b", fontFamily: "'DM Sans', sans-serif" }}>{detail}</div>
             </div>
           </div>
         ))}
@@ -226,8 +225,8 @@ function BusinessModelSlide() {
         {streams.map(({ label, pct, value, color }) => (
           <div key={label}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
-              <span style={{ fontSize: 13, color: "#e2e8f0", fontFamily: "'DM Sans', sans-serif" }}>{label}</span>
-              <span style={{ fontSize: 12, fontFamily: "'DM Mono', monospace", color }}>{value}</span>
+              <span style={{ fontSize: 16, color: "#e2e8f0", fontFamily: "'DM Sans', sans-serif" }}>{label}</span>
+              <span style={{ fontSize: 15, fontFamily: "'DM Mono', monospace", color }}>{value}</span>
             </div>
             <div style={{ height: 8, background: "rgba(255,255,255,0.06)", borderRadius: 99, overflow: "hidden" }}>
               <div style={{ height: "100%", width: `${pct}%`, background: `linear-gradient(90deg, ${color}, ${color}88)`, borderRadius: 99, transition: "width 1s" }} />
@@ -236,11 +235,11 @@ function BusinessModelSlide() {
         ))}
       </div>
       <Card style={{ marginTop: 24 }}>
-        <div style={{ fontSize: 12, color: "#64748b", fontFamily: "'DM Mono', monospace", marginBottom: 8, letterSpacing: 1 }}>UNIT ECONOMICS PER ₹1,000 TRANSACTION</div>
+        <div style={{ fontSize: 13, color: "#64748b", fontFamily: "'DM Mono', monospace", marginBottom: 8, letterSpacing: 1 }}>UNIT ECONOMICS PER ₹1,000 TRANSACTION</div>
         <div style={{ display: "flex", gap: 24 }}>
-          <div><div style={{ color: "#22c55e", fontWeight: 700, fontSize: 20, fontFamily: "'Syne', sans-serif" }}>₹880</div><div style={{ fontSize: 11, color: "#64748b", fontFamily: "'DM Sans', sans-serif" }}>Student earns</div></div>
-          <div><div style={{ color: accent, fontWeight: 700, fontSize: 20, fontFamily: "'Syne', sans-serif" }}>₹100</div><div style={{ fontSize: 11, color: "#64748b", fontFamily: "'DM Sans', sans-serif" }}>Net profit</div></div>
-          <div><div style={{ color: "#94a3b8", fontWeight: 700, fontSize: 20, fontFamily: "'Syne', sans-serif" }}>₹20</div><div style={{ fontSize: 11, color: "#64748b", fontFamily: "'DM Sans', sans-serif" }}>Razorpay fee</div></div>
+          <div><div style={{ color: "#22c55e", fontWeight: 700, fontSize: 20, fontFamily: "'Syne', sans-serif" }}>₹880</div><div style={{ fontSize: 14, color: "#64748b", fontFamily: "'DM Sans', sans-serif" }}>Student earns</div></div>
+          <div><div style={{ color: accent, fontWeight: 700, fontSize: 20, fontFamily: "'Syne', sans-serif" }}>₹100</div><div style={{ fontSize: 14, color: "#64748b", fontFamily: "'DM Sans', sans-serif" }}>Net profit</div></div>
+          <div><div style={{ color: "#94a3b8", fontWeight: 700, fontSize: 20, fontFamily: "'Syne', sans-serif" }}>₹20</div><div style={{ fontSize: 14, color: "#64748b", fontFamily: "'DM Sans', sans-serif" }}>Razorpay fee</div></div>
         </div>
       </Card>
     </div>
@@ -265,7 +264,7 @@ function MarketSlide() {
               <div style={{ fontSize: 11, fontFamily: "'DM Mono', monospace", color: color === accent ? dark : "#94a3b8", letterSpacing: 1 }}>{label}</div>
               <div style={{ fontSize: color === accent ? 18 : 14, fontWeight: 800, color: color === accent ? dark : "#f1f5f9", fontFamily: "'Syne', sans-serif" }}>{val}</div>
             </div>
-            <div style={{ fontSize: 10, color: "#64748b", fontFamily: "'DM Sans', sans-serif", marginTop: 8, maxWidth: size }}>{desc}</div>
+            <div style={{ fontSize: 13, color: "#64748b", fontFamily: "'DM Sans', sans-serif", marginTop: 8, maxWidth: size }}>{desc}</div>
           </div>
         ))}
       </div>
@@ -295,26 +294,26 @@ function GoToMarketSlide() {
       <div style={{ marginTop: 28, display: "flex", gap: 14 }}>
         {phases.map(({ phase, title, timeline, items, color }) => (
           <Card key={phase} style={{ flex: 1, borderTop: `3px solid ${color}` }}>
-            <div style={{ fontSize: 10, fontFamily: "'DM Mono', monospace", color, letterSpacing: 1 }}>{phase.toUpperCase()}</div>
-            <div style={{ fontSize: 17, fontWeight: 800, color: "#f1f5f9", fontFamily: "'Syne', sans-serif", marginTop: 4 }}>{title}</div>
-            <div style={{ fontSize: 10, color: "#64748b", fontFamily: "'DM Mono', monospace", marginBottom: 12 }}>{timeline}</div>
+            <div style={{ fontSize: 12, fontFamily: "'DM Mono', monospace", color, letterSpacing: 1 }}>{phase.toUpperCase()}</div>
+            <div style={{ fontSize: 19, fontWeight: 800, color: "#f1f5f9", fontFamily: "'Syne', sans-serif", marginTop: 4 }}>{title}</div>
+            <div style={{ fontSize: 13, color: "#64748b", fontFamily: "'DM Mono', monospace", marginBottom: 12 }}>{timeline}</div>
             {items.map(item => (
               <div key={item} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
                 <div style={{ width: 4, height: 4, borderRadius: "50%", background: color }} />
-                <span style={{ fontSize: 12, color: "#94a3b8", fontFamily: "'DM Sans', sans-serif" }}>{item}</span>
+                <span style={{ fontSize: 15, color: "#94a3b8", fontFamily: "'DM Sans', sans-serif" }}>{item}</span>
               </div>
             ))}
           </Card>
         ))}
       </div>
       <Card style={{ marginTop: 14 }}>
-        <div style={{ fontSize: 11, fontFamily: "'DM Mono', monospace", color: "#64748b", marginBottom: 10, letterSpacing: 1 }}>GROWTH FUNNEL</div>
+        <div style={{ fontSize: 13, fontFamily: "'DM Mono', monospace", color: "#64748b", marginBottom: 10, letterSpacing: 1 }}>GROWTH FUNNEL</div>
         <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
           {["AWARENESS", "INTEREST", "SIGNUP", "FIRST GIG", "RETENTION", "REFERRAL ♻️"].map((step, i, arr) => (
-            <>
-              <div key={step} style={{ background: `rgba(250,204,21,${0.08 + i * 0.04})`, border: `1px solid rgba(250,204,21,${0.15 + i * 0.05})`, borderRadius: 6, padding: "6px 8px", fontSize: 9, fontFamily: "'DM Mono', monospace", color: accent, whiteSpace: "nowrap" }}>{step}</div>
+            <div key={step} style={{ display: "flex", alignItems: "center", gap: 4 }}>
+              <div style={{ background: `rgba(250,204,21,${0.08 + i * 0.04})`, border: `1px solid rgba(250,204,21,${0.15 + i * 0.05})`, borderRadius: 6, padding: "6px 8px", fontSize: 9, fontFamily: "'DM Mono', monospace", color: accent, whiteSpace: "nowrap" }}>{step}</div>
               {i < arr.length - 1 && <div style={{ color: "#334155", fontSize: 12 }}>→</div>}
-            </>
+            </div>
           ))}
         </div>
       </Card>
@@ -339,13 +338,13 @@ function FinancialsSlide() {
           <div key={year} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
             <div style={{ marginBottom: 6, textAlign: "center" }}>
               <div style={{ fontSize: 18, fontWeight: 800, color: i === 2 ? accent : "#f1f5f9", fontFamily: "'Syne', sans-serif" }}>{rev}</div>
-              <div style={{ fontSize: 10, color: "#64748b", fontFamily: "'DM Mono', monospace" }}>{txns}</div>
+              <div style={{ fontSize: 13, color: "#64748b", fontFamily: "'DM Mono', monospace" }}>{txns}</div>
             </div>
             <div style={{ width: "100%", height: h, background: i === 2 ? `linear-gradient(180deg, ${accent}, ${accent}88)` : `linear-gradient(180deg, #334155, #1e293b)`, borderRadius: "8px 8px 0 0", position: "relative", transition: "height 1s" }}>
-              <div style={{ position: "absolute", top: 8, left: 0, right: 0, textAlign: "center", fontSize: 10, fontFamily: "'DM Mono', monospace", color: i === 2 ? dark : "#64748b" }}>margin {margin}</div>
+              <div style={{ position: "absolute", top: 8, left: 0, right: 0, textAlign: "center", fontSize: 12, fontFamily: "'DM Mono', monospace", color: i === 2 ? dark : "#64748b" }}>margin {margin}</div>
             </div>
             <div style={{ width: "100%", height: 2, background: "rgba(255,255,255,0.1)" }} />
-            <div style={{ fontSize: 12, fontWeight: 700, color: "#94a3b8", fontFamily: "'Syne', sans-serif", marginTop: 8 }}>{year}</div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: "#94a3b8", fontFamily: "'Syne', sans-serif", marginTop: 8 }}>{year}</div>
           </div>
         ))}
         <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 10 }}>
@@ -389,14 +388,14 @@ function CompetitionSlide() {
           <thead>
             <tr>
               {cols.map((c, i) => (
-                <th key={c} style={{ padding: "10px 16px", textAlign: i === 0 ? "left" : "center", fontSize: 11, fontFamily: "'DM Mono', monospace", letterSpacing: 1, color: i === 1 ? accent : "#64748b", borderBottom: `1px solid ${i === 1 ? accent + "44" : border}`, background: i === 1 ? `${accent}0a` : "transparent" }}>{c.toUpperCase()}</th>
+                <th key={c} style={{ padding: "10px 16px", textAlign: i === 0 ? "left" : "center", fontSize: 14, fontFamily: "'DM Mono', monospace", letterSpacing: 1, color: i === 1 ? accent : "#64748b", borderBottom: `1px solid ${i === 1 ? accent + "44" : border}`, background: i === 1 ? `${accent}0a` : "transparent" }}>{c.toUpperCase()}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {rows.map(({ feature, us, fiverr, linkedin, insta }) => (
               <tr key={feature}>
-                <td style={{ padding: "10px 16px", fontSize: 13, color: "#cbd5e1", fontFamily: "'DM Sans', sans-serif", borderBottom: `1px solid ${border}` }}>{feature}</td>
+                <td style={{ padding: "10px 16px", fontSize: 16, color: "#cbd5e1", fontFamily: "'DM Sans', sans-serif", borderBottom: `1px solid ${border}` }}>{feature}</td>
                 {[us, fiverr, linkedin, insta].map((val, i) => (
                   <td key={i} style={{ padding: "10px 16px", textAlign: "center", borderBottom: `1px solid ${border}`, background: i === 0 ? `${accent}0a` : "transparent" }}>
                     <span style={{ fontSize: 16 }}>{val ? "✅" : "❌"}</span>
@@ -406,6 +405,60 @@ function CompetitionSlide() {
             ))}
           </tbody>
         </table>
+      </div>
+    </div>
+  );
+}
+
+function PrototypeSlide() {
+  const protoUrl = "https://biswajit-ui.github.io/campusgig/";
+  return (
+    <div style={{ height: "100%", display: "flex", flexDirection: "column", padding: "20px 40px" }}>
+      <Tag>LIVE PROTOTYPE</Tag>
+      <div style={{ marginTop: 12, fontSize: 38, fontWeight: 800, fontFamily: "'Syne', sans-serif" }}>
+        See It <span style={{ color: accent }}>In Action</span>
+      </div>
+      <div style={{ marginTop: 6, color: "#94a3b8", fontFamily: "'DM Sans', sans-serif", fontSize: 17 }}>
+        A working front-end prototype — live on the web right now.
+      </div>
+      <div style={{ marginTop: 16, flex: 1, display: "flex", gap: 20, minHeight: 0 }}>
+        <div style={{ flex: 1, borderRadius: 12, overflow: "hidden", border: `1px solid ${border}`, position: "relative" }}>
+          <img
+            src={ProtoImg}
+            alt="CampusGig Prototype Screenshot"
+            style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", background: "#fff" }}
+          />
+          <div style={{ position: "absolute", top: 10, right: 10, background: `${accent}`, color: dark, fontSize: 11, fontWeight: 700, fontFamily: "'DM Mono', monospace", padding: "4px 10px", borderRadius: 6, letterSpacing: 1 }}>
+            LIVE
+          </div>
+        </div>
+        <div style={{ width: 240, display: "flex", flexDirection: "column", gap: 12 }}>
+          {[
+            { icon: "🎨", label: "Landing Page", desc: "Hero, nav, CTA & social proof" },
+            { icon: "🔍", label: "Browse Gigs", desc: "Filterable marketplace grid" },
+            { icon: "🤝", label: "How It Works", desc: "3-step onboarding flow" },
+            { icon: "💼", label: "For Business", desc: "Client-side value proposition" },
+          ].map(({ icon, label, desc }) => (
+            <Card key={label} style={{ padding: "12px 16px", display: "flex", gap: 12, alignItems: "flex-start" }}>
+              <span style={{ fontSize: 20 }}>{icon}</span>
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 700, color: "#f1f5f9", fontFamily: "'Syne', sans-serif" }}>{label}</div>
+                <div style={{ fontSize: 12, color: "#64748b", fontFamily: "'DM Sans', sans-serif", marginTop: 2 }}>{desc}</div>
+              </div>
+            </Card>
+          ))}
+          <Card style={{ padding: "14px 16px", marginTop: "auto", borderColor: `${accent}44`, background: `${accent}0d` }}>
+            <div style={{ fontSize: 11, color: "#64748b", fontFamily: "'DM Mono', monospace", letterSpacing: 1, marginBottom: 6 }}>SCAN OR VISIT</div>
+            <a
+              href={protoUrl}
+              target="_blank"
+              rel="noreferrer"
+              style={{ fontSize: 12, color: accent, fontFamily: "'DM Mono', monospace", wordBreak: "break-all", textDecoration: "none", fontWeight: 700 }}
+            >
+              {protoUrl}
+            </a>
+          </Card>
+        </div>
       </div>
     </div>
   );
@@ -421,7 +474,7 @@ function ClosingSlide() {
         <div style={{ marginTop: 20, fontSize: 52, fontWeight: 900, fontFamily: "'Syne', sans-serif", lineHeight: 1.1 }}>
           Every student's <br /><span style={{ color: accent }}>first rupee</span><br /> starts here.
         </div>
-        <div style={{ marginTop: 20, color: "#94a3b8", fontFamily: "'DM Sans', sans-serif", fontSize: 15, maxWidth: 400, margin: "20px auto 0" }}>
+        <div style={{ marginTop: 20, color: "#94a3b8", fontFamily: "'DM Sans', sans-serif", fontSize: 18, maxWidth: 500, margin: "20px auto 0" }}>
           CampusGig isn't just a platform. It's the professional identity every Indian college student deserves.
         </div>
         <div style={{ marginTop: 36, display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
@@ -440,26 +493,26 @@ function ClosingSlide() {
   );
 }
 
-const slideComponents = {
+const slideComponents: Record<string, React.ComponentType> = {
   cover: CoverSlide, hook: HookSlide, problem: ProblemSlide,
   solution: SolutionSlide, howItWorks: HowItWorksSlide,
   businessModel: BusinessModelSlide, market: MarketSlide,
   goToMarket: GoToMarketSlide, financials: FinancialsSlide,
-  competition: CompetitionSlide, closing: ClosingSlide,
+  competition: CompetitionSlide, prototype: PrototypeSlide, closing: ClosingSlide,
 };
 
 export default function PitchDeck() {
   const [current, setCurrent] = useState(0);
   const [animating, setAnimating] = useState(false);
 
-  const goTo = (i) => {
+  const goTo = (i: number) => {
     if (i === current || animating) return;
     setAnimating(true);
     setTimeout(() => { setCurrent(i); setAnimating(false); }, 200);
   };
 
   useEffect(() => {
-    const handler = (e) => {
+    const handler = (e: KeyboardEvent) => {
       if (e.key === "ArrowRight" && current < slides.length - 1) goTo(current + 1);
       if (e.key === "ArrowLeft" && current > 0) goTo(current - 1);
     };
@@ -470,7 +523,7 @@ export default function PitchDeck() {
   const SlideContent = slideComponents[slides[current].type];
 
   return (
-    <div style={{ background: "#060912", minHeight: "100vh", display: "flex", flexDirection: "column", fontFamily: "'DM Sans', sans-serif" }}>
+    <div style={{ background: "#060912", height: "100vh", overflow: "hidden", display: "flex", flexDirection: "column", fontFamily: "'DM Sans', sans-serif" }}>
       <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;600&display=swap" rel="stylesheet" />
 
       {/* Top bar */}
@@ -492,23 +545,11 @@ export default function PitchDeck() {
       </div>
 
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
-        {/* Left thumbnails */}
-        <div style={{ width: 180, borderRight: `1px solid ${border}`, overflowY: "auto", background: "rgba(0,0,0,0.2)", flexShrink: 0, padding: "8px 0" }}>
-          {slides.map((s, i) => (
-            <div key={s.id} onClick={() => goTo(i)} style={{ padding: "6px 10px", cursor: "pointer" }}>
-              <div style={{ borderRadius: 8, overflow: "hidden", border: `2px solid ${i === current ? accent : "transparent"}`, background: i === current ? `${accent}10` : navy, aspectRatio: "16/9", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s" }}>
-                <span style={{ fontSize: 9, fontFamily: "'DM Mono', monospace", color: i === current ? accent : "#334155", letterSpacing: 1 }}>{String(i + 1).padStart(2, "0")}</span>
-              </div>
-              <div style={{ fontSize: 9, color: i === current ? accent : "#475569", fontFamily: "'DM Mono', monospace", marginTop: 4, textAlign: "center", letterSpacing: 0.5 }}>{slideLabels[i]}</div>
-            </div>
-          ))}
-        </div>
-
         {/* Main slide */}
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden", minHeight: 0 }}>
-          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "12px 24px 0" }}>
-            <div style={{ width: "100%", maxWidth: 860, height: "100%", maxHeight: "calc(100vh - 160px)", minHeight: 420, background: navy, borderRadius: 20, border: `1px solid ${border}`, overflow: "hidden", boxShadow: "0 40px 80px rgba(0,0,0,0.6)", opacity: animating ? 0 : 1, transform: animating ? "scale(0.98)" : "scale(1)", transition: "opacity 0.2s, transform 0.2s", position: "relative" }}>
-              <SlideContent active={!animating} />
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
+          <div style={{ flex: 1, display: "flex", alignItems: "stretch", justifyContent: "center", padding: "12px 16px" }}>
+            <div style={{ width: "100%", maxWidth: 1100, background: navy, borderRadius: 16, border: `1px solid ${border}`, overflow: "hidden", boxShadow: "0 40px 80px rgba(0,0,0,0.6)", opacity: animating ? 0 : 1, transform: animating ? "scale(0.98)" : "scale(1)", transition: "opacity 0.2s, transform 0.2s", position: "relative" }}>
+              <SlideContent />
             </div>
           </div>
 
