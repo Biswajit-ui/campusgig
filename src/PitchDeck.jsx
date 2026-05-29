@@ -68,6 +68,9 @@ function CoverSlide() {
         <div style={{ fontSize: 18, color: "#94a3b8", marginTop: 12, fontFamily: "'DM Sans', sans-serif", letterSpacing: 2 }}>
           YOUR SKILLS. REAL MONEY. REAL EXPERIENCE.
         </div>
+        <div style={{ marginTop: 10, color: "#94a3b8", fontSize: 14, fontFamily: "'DM Sans', sans-serif", letterSpacing: 1.2 }}>
+          Team: Biswajit Maji · Disha Paramanik
+        </div>
         <div style={{ marginTop: 32, display: "flex", gap: 12, justifyContent: "center" }}>
           {["Hyperlocal", "College-Verified", "Escrow-Safe"].map(t => <Tag key={t}>{t}</Tag>)}
         </div>
