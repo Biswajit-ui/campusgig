@@ -551,7 +551,7 @@ export default function PitchDeck() {
         {/* Main slide */}
         <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
           <div style={{ flex: 1, display: "flex", alignItems: "stretch", justifyContent: "center", padding: "12px 16px" }}>
-            <div style={{ width: "100%", maxWidth: 1100, background: navy, borderRadius: 16, border: `1px solid ${border}`, overflow: "hidden", boxShadow: "0 40px 80px rgba(0,0,0,0.6)", opacity: animating ? 0 : 1, transform: animating ? "scale(0.98)" : "scale(1)", transition: "opacity 0.2s, transform 0.2s", position: "relative" }}>
+            <div style={{ width: "100%", maxWidth: 1100, background: navy, color: "#f8fafc", borderRadius: 16, border: `1px solid ${border}`, overflow: "hidden", boxShadow: "0 40px 80px rgba(0,0,0,0.6)", opacity: animating ? 0 : 1, transform: animating ? "scale(0.98)" : "scale(1)", transition: "opacity 0.2s, transform 0.2s", position: "relative" }}>
               <SlideContent />
             </div>
           </div>
